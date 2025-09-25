@@ -30,7 +30,7 @@ A mind is a beautiful thing, but it loves sweets. With the Pie Vote App, you can
 
 ![Design](designDiagram.png)
 
-The design mock illustrates a simple layout: login page, voting page, scores page, and about page with placeholders.  
+The design will illustrate a simple layout: a login page, voting page, scores page, and about page with placeholders.  
 
 ---
 
