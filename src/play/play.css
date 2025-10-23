@@ -144,3 +144,8 @@ main.bg-secondary.text-center {
     height: 90vw;
   }
 }
+
+.button-top-left.flash { background-color: #66ff66; }
+.button-top-right.flash { background-color: #ff6666; }
+.button-bottom-left.flash { background-color: #ffff99; }
+.button-bottom-right.flash { background-color: #6699ff; }
