@@ -1,12 +1,10 @@
-/* ---------- SCORES PAGE ---------- */
-
 main.scores {
   display: flex;                    
   justify-content: center;          
   align-items: flex-start;          
   height: calc(100vh - 60px);      
   margin-top: 60px;                 
-  background-color: #5a5d63;       /* slightly darker than before */
+  background-color: #5a5d63; 
   box-sizing: border-box;
   padding: 1rem;
 }
@@ -20,46 +18,42 @@ main.scores table {
   overflow: hidden;
 }
 
-/* Header / legend: darker gray alternating */
 main.scores th {
   padding: 0.5em 1em;
   color: #fff;
   font-size: 1.1em;
   font-family: system-ui, sans-serif;
-  border-bottom: 2px solid #111;   /* darker line under header */
+  border-bottom: 2px solid #111;
 }
 
 main.scores th:nth-child(odd) {
-  background-color: #555;          /* slightly darker shade */
+  background-color: #555;
 }
 
 main.scores th:nth-child(even) {
-  background-color: #444;          /* base dark gray */
+  background-color: #444; 
 }
 
-/* Table rows: darker beige alternating inversely to header */
 main.scores td {
   padding: 0.5em 1em;
   font-size: 1.1em;
   font-family: system-ui, sans-serif;
-  border-bottom: 1px solid #111;   /* darker line between rows */
+  border-bottom: 1px solid #111; 
   color: #000;
 }
 
 main.scores td:nth-child(odd) {
-  background-color: #e6e0b8;       /* darker light beige */
+  background-color: #e6e0b8;  
 }
 
 main.scores td:nth-child(even) {
-  background-color: #dcd4a0;       /* darker beige */
+  background-color: #dcd4a0; 
 }
 
-/* Center last column text */
 main.scores td:last-child {
   text-align: center;
 }
 
-/* Responsive for small screens */
 @media (max-width: 400px) {
   main.scores table {
     width: 95vw;
