@@ -6,7 +6,6 @@ export function About() {
   const [quoteAuthor, setQuoteAuthor] = React.useState('unknown');
 
   React.useEffect(() => {
-    // Mocking for now — real fetch will come later
     setImageUrl('placeholder.jpg');
     setQuote('Words are cheap. Show me the code.');
     setQuoteAuthor('Linus Torvalds');
