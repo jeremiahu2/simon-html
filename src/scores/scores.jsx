@@ -13,7 +13,7 @@ export function Scores() {
     ? scores.map((score, i) => (
         <tr key={i}>
           <td>{i + 1}</td>
-          <td>{score.name.split('@')[0]}</td>
+          <td>{score.name}</td>
           <td>{score.score}</td>
           <td>{score.date}</td>
         </tr>
@@ -25,7 +25,7 @@ export function Scores() {
       ];
 
   return (
-    <main className="scores">
+    <main className="container-fluid bg-secondary text-center">
       <table className="table table-light table-striped">
         <thead>
           <tr>
