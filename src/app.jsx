@@ -11,7 +11,7 @@ export const AuthState = {
   Unauthenticated: 2,
 };
 
-export function App() {
+export default function App() {
   const [authState, setAuthState] = React.useState(AuthState.Unknown);
   const [userName, setUserName] = React.useState('');
 
@@ -56,5 +56,6 @@ export function App() {
     </BrowserRouter>
   );
 }
+
 
 
