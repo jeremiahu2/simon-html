@@ -1,32 +1,95 @@
 import React from 'react';
 import './play.css';
 
+const BUTTONS = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
+const BUTTON_COLORS = {
+  'top-left': 'green',
+  'top-right': 'red',
+  'bottom-left': 'yellow',
+  'bottom-right': 'blue'
+};
+
 export function SimonGame() {
-  const [score, setScore] = React.useState('--');
-  const [message, setMessage] = React.useState('');
+  const [sequence, setSequence] = React.useState([]);
+  const [userSequence, setUserSequence] = React.useState([]);
+  const [score, setScore] = React.useState(0);
+  const [message, setMessage] = React.useState('Press Start to play');
+  const [isUserTurn, setIsUserTurn] = React.useState(false);
+  const [flashButton, setFlashButton] = React.useState(null);
 
-  function handleClick(name) {
-    console.log('Clicked', name);
-    setMessage(`Clicked ${name}`);
-  }
+  const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-  function startGame() {
+  const startGame = async () => {
     setScore(0);
-    setMessage('Game started!');
-  }
+    setSequence([]);
+    setUserSequence([]);
+    setMessage('Watch the sequence');
+    await delay(300);
+    addStep([]);
+  };
 
-  function resetGame() {
-    setScore('--');
-    setMessage('');
-  }
+  const addStep = async (currentSequence) => {
+    const nextStep = BUTTONS[Math.floor(Math.random() * BUTTONS.length)];
+    const newSequence = [...currentSequence, nextStep];
+    setSequence(newSequence);
+
+    setIsUserTurn(false);
+    for (let btn of newSequence) {
+      setFlashButton(btn);
+      await delay(500);
+      setFlashButton(null);
+      await delay(200);
+    }
+    setMessage('Your turn!');
+    setUserSequence([]);
+    setIsUserTurn(true);
+  };
+
+  const handleClick = async (btn) => {
+    if (!isUserTurn) return;
+
+    const newUserSequence = [...userSequence, btn];
+    setUserSequence(newUserSequence);
+
+    setFlashButton(btn);
+    await delay(200);
+    setFlashButton(null);
+
+    const currentIndex = newUserSequence.length - 1;
+    if (btn !== sequence[currentIndex]) {
+      setMessage('Wrong! Game over');
+      setIsUserTurn(false);
+      return;
+    }
+
+    if (newUserSequence.length === sequence.length) {
+      setScore(sequence.length);
+      setMessage('Correct! Next round...');
+      await delay(500);
+      addStep(sequence);
+    }
+  };
+
+  const resetGame = () => {
+    setSequence([]);
+    setUserSequence([]);
+    setScore(0);
+    setMessage('Press Start to play');
+    setIsUserTurn(false);
+    setFlashButton(null);
+  };
+
+  const getButtonStyle = (btn) => ({
+    backgroundColor: flashButton === btn ? 'white' : BUTTON_COLORS[btn]
+  });
 
   return (
     <div className="game">
       <div className="button-container">
-        <button className="button-top-left" onClick={() => handleClick('top-left')}></button>
-        <button className="button-top-right" onClick={() => handleClick('top-right')}></button>
-        <button className="button-bottom-left" onClick={() => handleClick('bottom-left')}></button>
-        <button className="button-bottom-right" onClick={() => handleClick('bottom-right')}></button>
+        <button className="button-top-left" style={getButtonStyle('top-left')} onClick={() => handleClick('top-left')}></button>
+        <button className="button-top-right" style={getButtonStyle('top-right')} onClick={() => handleClick('top-right')}></button>
+        <button className="button-bottom-left" style={getButtonStyle('bottom-left')} onClick={() => handleClick('bottom-left')}></button>
+        <button className="button-bottom-right" style={getButtonStyle('bottom-right')} onClick={() => handleClick('bottom-right')}></button>
 
         <div className="controls center">
           <div className="game-name">Simon<sup>®</sup></div>
