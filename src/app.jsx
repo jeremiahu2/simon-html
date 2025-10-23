@@ -11,7 +11,7 @@ export const AuthState = {
   Unauthenticated: 2,
 };
 
-export default function App() {
+export function App() {
   const [authState, setAuthState] = React.useState(AuthState.Unknown);
   const [userName, setUserName] = React.useState('');
 
@@ -28,7 +28,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <header className="navbar bg-dark navbar-dark">
-        <menu className="navbar-nav">
+        <ul className="navbar-nav">
           <li><NavLink className="nav-link" to="/">Home</NavLink></li>
           <li><NavLink className="nav-link" to="/about">About</NavLink></li>
           {authState === AuthState.Authenticated && (
@@ -37,7 +37,7 @@ export default function App() {
               <li><NavLink className="nav-link" to="/scores">Scores</NavLink></li>
             </>
           )}
-        </menu>
+        </ul>
       </header>
 
       <Routes>

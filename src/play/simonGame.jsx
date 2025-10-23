@@ -3,18 +3,18 @@ import { delay } from './delay';
 import './play.css';
 
 export function SimonGame() {
-  const [sequence, setSequence] = React.useState([]);
-  const [playerIndex, setPlayerIndex] = React.useState(0);
-  const [score, setScore] = React.useState('--');
-  const [isPlaying, setIsPlaying] = React.useState(false);
-  const [message, setMessage] = React.useState('Press Start');
-
   const buttons = [
     { name: 'top-left', color: 'green' },
     { name: 'top-right', color: 'red' },
     { name: 'bottom-left', color: 'yellow' },
     { name: 'bottom-right', color: 'blue' },
   ];
+
+  const [sequence, setSequence] = React.useState([]);
+  const [playerIndex, setPlayerIndex] = React.useState(0);
+  const [score, setScore] = React.useState('--');
+  const [isPlaying, setIsPlaying] = React.useState(false);
+  const [message, setMessage] = React.useState('Press Start');
 
   async function flashButton(name) {
     const btn = document.querySelector(`.button-${name}`);
@@ -102,4 +102,3 @@ export function SimonGame() {
     </div>
   );
 }
-
