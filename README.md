@@ -6,6 +6,8 @@ In 1978 Milton-Bradley, now Hasbro, released an electronic game named Simon. It 
 
 We are going to build a peer to peer multiplayer web application modeled after Simon. We will build it together by adding new functionality every time we learn a new technology. The example version of code and production deployment for each iteration are available to you. Your job will be to review the example and then deploy it to your production environment. The goal is to make you think about every line of code. Ask, "why is it done this way?" and "Is there a better way?". You can then take what you have learned, or even portions of the Simon code, and apply it to your Startup application.
 
+In the SimonReactP2 added the following files; delay.js, gameNotifier.js, players.jsx, and simonGame.jsx. I used these files to implement full reactivity and functtionality. The main thing I did was use simonGame to make the game run, then fiddled with most of my css and jsx files to adjust the layout and styling. It took me a lot longer to get everything to look how I wanted it to, and I updated the look a little bit from what it was before as well.
+
 ## 🚀 Specification Deliverable
 
 Simon is a simple game where you repeat a sequence of color flashes. The longer sequence you repeat the higher your score is.
