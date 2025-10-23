@@ -25,7 +25,7 @@ export function Scores() {
       ];
 
   return (
-    <main className="container-fluid bg-secondary text-center">
+    <main className="scores">
       <table className="table table-light table-striped">
         <thead>
           <tr>
@@ -40,4 +40,3 @@ export function Scores() {
     </main>
   );
 }
-

@@ -27,14 +27,14 @@ export function App() {
 
   return (
     <BrowserRouter>
-      <header className="navbar bg-dark navbar-dark">
+      <header className="navbar">
         <ul className="navbar-nav">
-          <li><NavLink className="nav-link" to="/">Home</NavLink></li>
-          <li><NavLink className="nav-link" to="/about">About</NavLink></li>
+          <li className="nav-item"><NavLink className="nav-link" to="/">Home</NavLink></li>
+          <li className="nav-item"><NavLink className="nav-link" to="/about">About</NavLink></li>
           {authState === AuthState.Authenticated && (
             <>
-              <li><NavLink className="nav-link" to="/play">Play</NavLink></li>
-              <li><NavLink className="nav-link" to="/scores">Scores</NavLink></li>
+              <li className="nav-item"><NavLink className="nav-link" to="/play">Play</NavLink></li>
+              <li className="nav-item"><NavLink className="nav-link" to="/scores">Scores</NavLink></li>
             </>
           )}
         </ul>

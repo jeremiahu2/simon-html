@@ -1,15 +1,13 @@
-import './play.css';
 import React from 'react';
 import { Players } from './players';
 import { SimonGame } from './simonGame';
+import './play.css';
 
 export function Play({ userName }) {
   return (
-    <main className="bg-secondary text-center play-page">
+    <main className="container-fluid">
       <Players userName={userName} />
-      <div className="play-container">
-        <SimonGame />
-      </div>
+      <SimonGame />
     </main>
   );
 }

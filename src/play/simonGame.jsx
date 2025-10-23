@@ -6,7 +6,6 @@ export function SimonGame() {
   const [message, setMessage] = React.useState('');
 
   function handleClick(name) {
-    // placeholder for button click logic
     console.log('Clicked', name);
   }
 
