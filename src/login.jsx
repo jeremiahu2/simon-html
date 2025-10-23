@@ -1,21 +1,47 @@
-import React from 'react';
+import React from "react";
+import { AuthState } from "./app.jsx";
 
-export function Login() {
+export function Login({ userName, authState, onAuthChange }) {
+  const [nameInput, setNameInput] = React.useState("");
+
+  function handleLogin(e) {
+    e.preventDefault();
+    if (nameInput.trim() !== "") {
+      localStorage.setItem("userName", nameInput);
+      onAuthChange(nameInput, AuthState.Authenticated);
+    }
+  }
+
+  function handleLogout() {
+    localStorage.removeItem("userName");
+    onAuthChange("", AuthState.Unauthenticated);
+  }
+
   return (
     <main className="container-fluid text-center">
-      <h1>Welcome to Simon</h1>
-      <form method="get" action="/play">
-        <div className="input-group mb-3">
-          <span className="input-group-text">@</span>
-          <input className="form-control" type="text" placeholder="your@email.com" />
-        </div>
-        <div className="input-group mb-3">
-          <span className="input-group-text">🔒</span>
-          <input className="form-control" type="password" placeholder="password" />
-        </div>
-        <button type="submit" className="btn btn-primary">Login</button>
-        <button type="submit" className="btn btn-secondary">Create</button>
-      </form>
+      {authState === AuthState.Authenticated ? (
+        <>
+          <h1>Welcome, {userName}!</h1>
+          <button className="btn btn-danger" onClick={handleLogout}>
+            Logout
+          </button>
+        </>
+      ) : (
+        <form onSubmit={handleLogin}>
+          <h1>Login to Simon</h1>
+          <input
+            type="text"
+            placeholder="Enter your name"
+            value={nameInput}
+            onChange={(e) => setNameInput(e.target.value)}
+            className="form-control m-2"
+          />
+          <button className="btn btn-primary" type="submit">
+            Login
+          </button>
+        </form>
+      )}
     </main>
   );
 }
+
