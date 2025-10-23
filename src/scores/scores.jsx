@@ -6,6 +6,7 @@ export function Scores() {
 
   React.useEffect(() => {
     const storedScores = JSON.parse(localStorage.getItem('scores') || '[]');
+    storedScores.sort((a, b) => b.score - a.score);
     setScores(storedScores);
   }, []);
 
@@ -25,8 +26,8 @@ export function Scores() {
       ];
 
   return (
-    <main className="scores">
-      <table>
+    <main className="container-fluid bg-secondary text-center scores">
+      <table className="table table-light table-striped">
         <thead>
           <tr>
             <th>#</th>
