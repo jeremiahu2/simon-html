@@ -1,80 +1,79 @@
-import React from "react";
-import { delay } from "./delay";
-import "./play.css";
+import React from 'react';
+import { delay } from './delay';
+import './play.css';
 
 export function SimonGame() {
   const [sequence, setSequence] = React.useState([]);
   const [playerIndex, setPlayerIndex] = React.useState(0);
-  const [score, setScore] = React.useState(0);
+  const [score, setScore] = React.useState('--');
   const [isPlaying, setIsPlaying] = React.useState(false);
-  const [message, setMessage] = React.useState("Press Start to Play");
+  const [message, setMessage] = React.useState('Press Start');
 
-  const buttons = ["top-left", "top-right", "bottom-left", "bottom-right"];
+  const buttons = [
+    { name: 'top-left', color: 'green' },
+    { name: 'top-right', color: 'red' },
+    { name: 'bottom-left', color: 'yellow' },
+    { name: 'bottom-right', color: 'blue' },
+  ];
 
-  // Flash a button visually
-  async function flashButton(color) {
-    const btn = document.querySelector(`.button-${color}`);
-    btn.classList.add("active");
+  async function flashButton(name) {
+    const btn = document.querySelector(`.button-${name}`);
+    if (!btn) return;
+    btn.style.filter = 'brightness(150%)';
     await delay(500);
-    btn.classList.remove("active");
+    btn.style.filter = '';
     await delay(100);
   }
 
-  // Play the current sequence to the player
   async function playSequence(seq) {
     setIsPlaying(true);
-    for (let color of seq) {
-      await flashButton(color);
+    for (let item of seq) {
+      await flashButton(item);
     }
     setIsPlaying(false);
-    setMessage("Your turn!");
+    setMessage('Your turn!');
   }
 
-  // Start a new game
   async function startGame() {
-    const firstColor = buttons[Math.floor(Math.random() * 4)];
-    const newSeq = [firstColor];
+    const first = buttons[Math.floor(Math.random() * 4)].name;
+    const newSeq = [first];
     setSequence(newSeq);
     setPlayerIndex(0);
     setScore(0);
-    setMessage("Watch the sequence");
+    setMessage('Watch the sequence');
     await playSequence(newSeq);
   }
 
-  // Handle player clicking a button
-  async function handleClick(color) {
-    if (isPlaying) return; // ignore clicks while sequence is playing
+  async function handleClick(name) {
+    if (isPlaying) return;
 
-    // Check player input
-    if (color === sequence[playerIndex]) {
+    if (name === sequence[playerIndex]) {
       setPlayerIndex(playerIndex + 1);
-
-      // Completed the sequence correctly
       if (playerIndex + 1 === sequence.length) {
-        const nextColor = buttons[Math.floor(Math.random() * 4)];
-        const newSeq = [...sequence, nextColor];
+        const next = buttons[Math.floor(Math.random() * 4)].name;
+        const newSeq = [...sequence, next];
         setSequence(newSeq);
         setPlayerIndex(0);
         setScore(newSeq.length - 1);
-        setMessage("Watch the sequence");
+        setMessage('Watch the sequence');
         await playSequence(newSeq);
       }
     } else {
-      // Player made a mistake
       setMessage(`Game Over! Score: ${score}`);
       setSequence([]);
       setPlayerIndex(0);
+      setScore('--');
     }
   }
 
   return (
     <div className="game">
       <div className="button-container">
-        {buttons.map((color) => (
+        {buttons.map((btn) => (
           <button
-            key={color}
-            className={`button-${color}`}
-            onClick={() => handleClick(color)}
+            key={btn.name}
+            className={`button-${btn.name}`}
+            onClick={() => handleClick(btn.name)}
           ></button>
         ))}
 
@@ -92,8 +91,8 @@ export function SimonGame() {
             onClick={() => {
               setSequence([]);
               setPlayerIndex(0);
-              setScore(0);
-              setMessage("Press Start to Play");
+              setScore('--');
+              setMessage('Press Start');
             }}
           >
             Reset
