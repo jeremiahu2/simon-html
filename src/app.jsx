@@ -27,7 +27,7 @@ export function App() {
 
   return (
     <BrowserRouter>
-      <header className="navbar bg-dark navbar-dark">
+      <header className="navbar bg-dark navbar-dark fixed-top">
         <ul className="navbar-nav">
           <li><NavLink className="nav-link" to="/">Home</NavLink></li>
           <li><NavLink className="nav-link" to="/about">About</NavLink></li>
@@ -37,25 +37,23 @@ export function App() {
               <li><NavLink className="nav-link" to="/scores">Scores</NavLink></li>
             </>
           )}
-          <li><a className="nav-link" href="https://github.com/jeremiahu2/simon-html" target="_blank" rel="noreferrer">GitHub Repo</a></li>
         </ul>
       </header>
 
-      <Routes>
-        <Route path="/" element={
-          <Login
-            userName={userName}
-            authState={authState}
-            onAuthChange={(user, state) => {
-              setUserName(user);
-              setAuthState(state);
-            }}
-          />
-        }/>
-        <Route path="/about" element={<About />} />
-        <Route path="/play" element={<Play userName={userName} />} />
-        <Route path="/scores" element={<Scores />} />
-      </Routes>
+      <div className="content">
+        <Routes>
+          <Route path="/" element={
+            <Login userName={userName} authState={authState} 
+                   onAuthChange={(user, state) => {
+                     setUserName(user);
+                     setAuthState(state);
+                   }} />
+          }/>
+          <Route path="/about" element={<About />} />
+          <Route path="/play" element={<Play userName={userName} />} />
+          <Route path="/scores" element={<Scores />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }
