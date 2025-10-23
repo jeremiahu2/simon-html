@@ -27,16 +27,17 @@ export function App() {
 
   return (
     <BrowserRouter>
-      <header className="navbar">
+      <header className="navbar bg-dark navbar-dark">
         <ul className="navbar-nav">
-          <li className="nav-item"><NavLink className="nav-link" to="/">Home</NavLink></li>
-          <li className="nav-item"><NavLink className="nav-link" to="/about">About</NavLink></li>
+          <li><NavLink className="nav-link" to="/">Home</NavLink></li>
+          <li><NavLink className="nav-link" to="/about">About</NavLink></li>
           {authState === AuthState.Authenticated && (
             <>
-              <li className="nav-item"><NavLink className="nav-link" to="/play">Play</NavLink></li>
-              <li className="nav-item"><NavLink className="nav-link" to="/scores">Scores</NavLink></li>
+              <li><NavLink className="nav-link" to="/play">Play</NavLink></li>
+              <li><NavLink className="nav-link" to="/scores">Scores</NavLink></li>
             </>
           )}
+          <li><a className="nav-link" href="https://github.com/jeremiahu2/simon-html" target="_blank" rel="noreferrer">GitHub Repo</a></li>
         </ul>
       </header>
 
@@ -58,5 +59,3 @@ export function App() {
     </BrowserRouter>
   );
 }
-
-
