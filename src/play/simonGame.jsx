@@ -7,6 +7,7 @@ export function SimonGame() {
 
   function handleClick(name) {
     console.log('Clicked', name);
+    setMessage(`Clicked ${name}`);
   }
 
   function startGame() {

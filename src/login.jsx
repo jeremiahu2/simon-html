@@ -18,23 +18,23 @@ export function Login({ userName, authState, onAuthChange }) {
   }
 
   return (
-    <main className="container-fluid text-center">
+    <main className="container-fluid">
       {authState === AuthState.Authenticated ? (
-        <>
+        <div className="login-box">
           <h1>Welcome, {userName}!</h1>
           <button className="btn btn-danger" onClick={handleLogout}>
             Logout
           </button>
-        </>
+        </div>
       ) : (
-        <form onSubmit={handleLogin}>
+        <form className="login-box" onSubmit={handleLogin}>
           <h1>Login to Simon</h1>
           <input
             type="text"
             placeholder="Enter your name"
             value={nameInput}
             onChange={(e) => setNameInput(e.target.value)}
-            className="form-control m-2"
+            className="form-control"
           />
           <button className="btn btn-primary" type="submit">
             Login
@@ -44,4 +44,3 @@ export function Login({ userName, authState, onAuthChange }) {
     </main>
   );
 }
-
