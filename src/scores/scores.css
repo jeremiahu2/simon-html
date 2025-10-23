@@ -1,50 +1,70 @@
-/* scores.css */
+/* ---------- SCORES PAGE ---------- */
 
-/* Main container under fixed header */
 main.scores {
-  display: flex;                     /* use flexbox */
-  justify-content: center;           /* horizontal center */
-  align-items: center;               /* vertical center in available space */
-  height: calc(100vh - 60px);        /* full viewport minus header height */
-  margin-top: 60px;                  /* offset for fixed header */
-  background-color: #6c757d;         /* match app theme */
-  box-sizing: border-box;            /* include padding in height calculation */
-  padding: 1rem;                     /* optional padding */
+  display: flex;                    
+  justify-content: center;          
+  align-items: flex-start;          
+  height: calc(100vh - 60px);      
+  margin-top: 60px;                 
+  background-color: #5a5d63;       /* slightly darker than before */
+  box-sizing: border-box;
+  padding: 1rem;
 }
 
-/* Table styling */
 main.scores table {
-  border-collapse: collapse;         /* no gaps */
+  border-collapse: collapse;       
   text-align: center;
-  width: auto;                       /* let table size to content */
-  max-width: 80vw;                   /* responsive max width */
+  width: auto;                     
+  max-width: 80vw;                 
+  border-radius: 5px;              
+  overflow: hidden;
 }
 
-/* Table cells */
-main.scores th,
-main.scores td {
+/* Header / legend: darker gray alternating */
+main.scores th {
   padding: 0.5em 1em;
   color: #fff;
   font-size: 1.1em;
   font-family: system-ui, sans-serif;
-  border: none;                      /* remove strokes */
+  border-bottom: 2px solid #111;   /* darker line under header */
 }
 
-/* Handle long names */
+main.scores th:nth-child(odd) {
+  background-color: #555;          /* slightly darker shade */
+}
+
+main.scores th:nth-child(even) {
+  background-color: #444;          /* base dark gray */
+}
+
+/* Table rows: darker beige alternating inversely to header */
 main.scores td {
-  max-width: 40vw;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  padding: 0.5em 1em;
+  font-size: 1.1em;
+  font-family: system-ui, sans-serif;
+  border-bottom: 1px solid #111;   /* darker line between rows */
+  color: #000;
 }
 
-/* Responsive for very small screens */
+main.scores td:nth-child(odd) {
+  background-color: #e6e0b8;       /* darker light beige */
+}
+
+main.scores td:nth-child(even) {
+  background-color: #dcd4a0;       /* darker beige */
+}
+
+/* Center last column text */
+main.scores td:last-child {
+  text-align: center;
+}
+
+/* Responsive for small screens */
 @media (max-width: 400px) {
   main.scores table {
-    width: 95vw;                      /* table almost full width */
+    width: 95vw;
   }
   main.scores td {
     max-width: 90vw;
   }
 }
-
